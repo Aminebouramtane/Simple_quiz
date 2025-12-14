@@ -3,7 +3,6 @@
 A **professional-grade** interactive quiz application for embedded systems learning, featuring 200 questions across multiple categories with advanced features including dark mode, keyboard shortcuts, performance analytics, and much more!
 
 ![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Features](https://img.shields.io/badge/features-12+-orange.svg)
 ![Status](https://img.shields.io/badge/status-production-success.svg)
 
