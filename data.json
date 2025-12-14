@@ -1,0 +1,916 @@
+{
+        "quizData" : [
+            {
+                "question": "Un système embarqué est :",
+                "options": [
+                    "Un PC portable",
+                    "Un système autonome intégré dans un objet",
+                    "Un serveur cloud",
+                    "Un réseau de capteurs sans logiciel"
+                ],
+                "correct": 1,
+                "hint": "Le système embarqué est conçu pour une tâche spécifique et intégré dans un objet plus large.",
+                "category": "intro"
+            },
+            {
+                "question": "Les principales fonctionnalités d'un SE sont :",
+                "options": [
+                    "Traitement de données",
+                    "Stockage de données",
+                    "Interaction avec le monde extérieur",
+                    "Génération d'énergie"
+                ],
+                "correct": [0, 1, 2],
+                "hint": "Un SE traite, stocke et interagit avec son environnement. Il ne génère pas d'énergie.",
+                "category": "intro"
+            },
+            {
+                "question": "Le 'cerveau' d'un SE est généralement :",
+                "options": [
+                    "Un capteur",
+                    "Un actionneur",
+                    "Un microcontrôleur ou microprocesseur",
+                    "Une mémoire Flash"
+                ],
+                "correct": 2,
+                "hint": "Le microcontrôleur ou microprocesseur est l'unité de traitement qui exécute le programme.",
+                "category": "intro"
+            },
+            {
+                "question": "Un capteur a pour rôle :",
+                "options": [
+                    "Convertir un signal numérique en analogique",
+                    "Mesurer une grandeur physique et la convertir en signal électrique",
+                    "Stocker des données",
+                    "Amplifier un signal"
+                ],
+                "correct": 1,
+                "hint": "Les capteurs transforment des grandeurs physiques (température, lumière, etc.) en signaux électriques.",
+                "category": "intro"
+            },
+            {
+                "question": "Un actionneur :",
+                "options": [
+                    "Transforme une commande électrique en action physique",
+                    "Mesure la température",
+                    "Convertit l'analogique en numérique",
+                    "Stocker le programme"
+                ],
+                "correct": 0,
+                "hint": "Les actionneurs (moteurs, vannes, LEDs) convertissent les signaux électriques en actions physiques.",
+                "category": "intro"
+            },
+            {
+                "question": "L'ADC (Convertisseur Analogique-Numérique) :",
+                "options": [
+                    "Convertit un signal numérique en analogique",
+                    "Convertit un signal analogique en numérique",
+                    "Stocker des données temporaires",
+                    "Gère les interruptions"
+                ],
+                "correct": 1,
+                "hint": "L'ADC convertit les signaux analogiques (continus) en valeurs numériques (discrètes) que le processeur peut traiter.",
+                "category": "archi"
+            },
+            {
+                "question": "La mémoire volatile est :",
+                "options": [
+                    "ROM",
+                    "RAM",
+                    "EEPROM",
+                    "Flash"
+                ],
+                "correct": 1,
+                "hint": "La mémoire volatile perd ses données quand l'alimentation est coupée. La RAM en est un exemple.",
+                "category": "archi"
+            },
+            {
+                "question": "La mémoire non volatile est :",
+                "options": [
+                    "SRAM",
+                    "DRAM",
+                    "EEPROM",
+                    "Cache"
+                ],
+                "correct": 2,
+                "hint": "La mémoire non volatile conserve les données sans alimentation. EEPROM, Flash, ROM sont non volatiles.",
+                "category": "archi"
+            },
+            {
+                "question": "Les périphériques de communication dans un SE incluent :",
+                "options": [
+                    "I2C, SPI, CAN",
+                    "LED, moteur",
+                    "Capteur de température",
+                    "ADC, DAC"
+                ],
+                "correct": 0,
+                "hint": "I2C, SPI, CAN, UART, WiFi, Ethernet sont des protocoles/interfaces de communication.",
+                "category": "archi"
+            },
+            {
+                "question": "Le bus dans un SE sert à :",
+                "options": [
+                    "Alimenter les composants",
+                    "Interconnecter le processeur avec les autres composants",
+                    "Convertir les signaux",
+                    "Refroidir le système"
+                ],
+                "correct": 1,
+                "hint": "Le bus est un ensemble de lignes conductrices qui transportent données, adresses et signaux de contrôle.",
+                "category": "archi"
+            },
+            {
+                "question": "Les broches PWM sur Arduino UNO sont repérées par :",
+                "options": [
+                    "Le symbole ~",
+                    "La lettre A",
+                    "La couleur rouge",
+                    "Aucun marquage"
+                ],
+                "correct": 0,
+                "hint": "Les broches 3, 5, 6, 9, 10, 11 sur Arduino UNO ont le symbole ~ et peuvent générer des signaux PWM.",
+                "category": "arduino"
+            },
+            {
+                "question": "La fonction analogWrite() prend une valeur entre :",
+                "options": [
+                    "0 et 1023",
+                    "0 et 255",
+                    "-5 et +5",
+                    "0 et 5"
+                ],
+                "correct": 1,
+                "hint": "analogWrite() utilise une résolution 8 bits (2^8 = 256 valeurs) de 0 à 255.",
+                "category": "arduino"
+            },
+            {
+                "question": "La fonction analogRead() renvoie une valeur entre :",
+                "options": [
+                    "0 et 255",
+                    "0 et 1023",
+                    "-5 et +5",
+                    "0 et 5"
+                ],
+                "correct": 1,
+                "hint": "Les entrées analogiques d'Arduino ont une résolution 10 bits (2^10 = 1024 valeurs) de 0 à 1023.",
+                "category": "arduino"
+            },
+            {
+                "question": "Un potentiomètre est :",
+                "options": [
+                    "Un capteur de lumière",
+                    "Une résistance variable",
+                    "Un actionneur",
+                    "Un convertisseur A/N"
+                ],
+                "correct": 1,
+                "hint": "Un potentiomètre est une résistance dont la valeur peut être ajustée manuellement.",
+                "category": "arduino"
+            },
+            {
+                "question": "Une LED RGB à cathode commune :",
+                "options": [
+                    "A une broche commune au +5V",
+                    "A une broche commune à la masse",
+                    "Nécessite un niveau HIGH pour allumer une couleur",
+                    "Nécessite un niveau LOW pour allumer une couleur"
+                ],
+                "correct": [1, 2],
+                "hint": "Cathode commune = broche commune connectée à GND. Pour allumer une couleur, on applique HIGH à la broche correspondante.",
+                "category": "arduino"
+            },
+            {
+                "question": "Dans la chaîne SE + IA, la latence est critique car :",
+                "options": [
+                    "Elle affecte la consommation énergétique",
+                    "Un délai excessif peut compromettre la stabilité du système",
+                    "Elle augmente le coût",
+                    "Elle améliore la précision des capteurs"
+                ],
+                "correct": 1,
+                "hint": "Dans les applications temps réel (ex: conduite autonome), un retard de décision peut avoir des conséquences graves.",
+                "category": "ai"
+            },
+            {
+                "question": "L'inférence IA sur SE consiste à :",
+                "options": [
+                    "Entraîner de grands modèles sur le dispositif",
+                    "Exécuter un modèle pré-entraîné pour prendre des décisions",
+                    "Programmer en langage machine",
+                    "Configurer les registres du CPU"
+                ],
+                "correct": 1,
+                "hint": "L'inférence est l'exécution d'un modèle IA déjà entraîné pour produire des prédictions sur de nouvelles données.",
+                "category": "ai"
+            },
+            {
+                "question": "TensorFlow Lite est :",
+                "options": [
+                    "Un système d'exploitation",
+                    "Un framework pour déployer des modèles IA sur SE",
+                    "Un type de mémoire",
+                    "Un capteur intelligent"
+                ],
+                "correct": 1,
+                "hint": "TensorFlow Lite est une version légère de TensorFlow optimisée pour les appareils mobiles et embarqués.",
+                "category": "ai"
+            },
+            {
+                "question": "Les contraintes de développement d'un SE incluent :",
+                "options": [
+                    "Puissance de calcul limitée",
+                    "Mémoire limitée",
+                    "Consommation énergétique",
+                    "Toutes ces réponses"
+                ],
+                "correct": 3,
+                "hint": "Les SE ont souvent des ressources limitées (CPU, RAM, énergie) qui contraignent le développement.",
+                "category": "ai"
+            },
+            {
+                "question": "Le futur des SE tend vers :",
+                "options": [
+                    "Plus d'intégration de l'IA",
+                    "Une plus grande connectivité (5G, IoT)",
+                    "Une sécurité renforcée",
+                    "Toutes ces réponses"
+                ],
+                "correct": 3,
+                "hint": "Les SE évoluent vers plus d'intelligence, de connectivité et de sécurité.",
+                "category": "ai"
+            },
+            {
+                "question": "Dans un système embarqué temps réel dur (hard real-time), si une tâche dépasse sa deadline :",
+                "options": [
+                    "Le système continue normalement avec un léger retard",
+                    "Le système peut subir une défaillance catastrophique",
+                    "La tâche est automatiquement reportée",
+                    "Le processeur accélère pour compenser"
+                ],
+                "correct": 1,
+                "hint": "Temps réel dur: dépasser la deadline = échec critique (ex: airbag, contrôle aérien)",
+                "category": "intro"
+            },
+            {
+                "question": "Le phénomène de 'watchdog timer overflow' dans un SE peut causer :",
+                "options": [
+                    "Un reset automatique du système",
+                    "Une augmentation de la fréquence CPU",
+                    "Une désactivation des interruptions",
+                    "Une accélération du bootloader"
+                ],
+                "correct": 0,
+                "hint": "Le watchdog surveille le système et le réinitialise s'il ne reçoit pas de signal périodique (détecte blocage).",
+                "category": "intro"
+            },
+            {
+                "question": "Quelle technique permet d'économiser l'énergie en éteignant des parties du processeur non utilisées ?",
+                "options": [
+                    "Clock gating",
+                    "Data forwarding",
+                    "Branch prediction",
+                    "Cache coherence"
+                ],
+                "correct": 0,
+                "hint": "Clock gating désactive l'horloge des modules inactifs pour économiser l'énergie dynamique.",
+                "category": "intro"
+            },
+            {
+                "question": "Dans un SE critique, la redondance matérielle triple (TMR) permet de :",
+                "options": [
+                    "Tripler la vitesse de traitement",
+                    "Tolérer une défaillance en votant à la majorité",
+                    "Réduire la consommation d'un tiers",
+                    "Augmenter la précision des calculs"
+                ],
+                "correct": 1,
+                "hint": "Triple Modular Redundancy: 3 modules identiques, vote majoritaire pour tolérer 1 panne.",
+                "category": "intro"
+            },
+            {
+                "question": "Le 'jitter' dans un SE temps réel est :",
+                "options": [
+                    "La variation temporelle imprévisible dans l'exécution des tâches",
+                    "Un bruit électromagnétique",
+                    "Une erreur de quantification ADC",
+                    "Un délai fixe garanti"
+                ],
+                "correct": 0,
+                "hint": "Jitter = variabilité du délai d'exécution. Problématique pour applications temps réel strictes.",
+                "category": "intro"
+            },
+            {
+                "question": "Le pipeline d'un processeur peut causer des 'hazards'. Un 'data hazard' se produit quand :",
+                "options": [
+                    "Deux instructions tentent d'accéder au même registre en conflit",
+                    "Une branche conditionnelle est prédite incorrectement",
+                    "Le cache est plein",
+                    "L'alimentation est instable"
+                ],
+                "correct": 0,
+                "hint": "Data hazard: instruction dépend du résultat d'une instruction précédente pas encore terminée (RAW, WAR, WAW).",
+                "category": "archi"
+            },
+            {
+                "question": "Quelle est la différence entre architecture Harvard et Von Neumann ?",
+                "options": [
+                    "Harvard sépare mémoire code et données, Von Neumann les unifie",
+                    "Harvard est plus lente mais moins chère",
+                    "Von Neumann utilise plus d'énergie",
+                    "Il n'y a aucune différence pratique"
+                ],
+                "correct": 0,
+                "hint": "Harvard: bus séparés code/données (parallélisme). Von Neumann: bus unique (simplicité, goulot).",
+                "category": "archi"
+            },
+            {
+                "question": "Dans un système DMA (Direct Memory Access), le contrôleur DMA :",
+                "options": [
+                    "Transfere des données entre périphérique et mémoire sans CPU",
+                    "Compresse les données avant stockage",
+                    "Crypte les communications",
+                    "Gère uniquement les interruptions"
+                ],
+                "correct": 0,
+                "hint": "DMA libère le CPU des transferts mémoire lourds. Le contrôleur DMA gère le transfert de manière autonome.",
+                "category": "archi"
+            },
+            {
+                "question": "Le 'cache miss' est plus problématique qu'un 'cache hit' car :",
+                "options": [
+                    "Il faut accéder à la RAM, beaucoup plus lente que le cache",
+                    "Il provoque une erreur système",
+                    "Il consomme plus d'énergie",
+                    "Il efface le cache entier"
+                ],
+                "correct": 0,
+                "hint": "Cache hit ~1-10 cycles, miss ~100+ cycles (latence RAM). Impact majeur sur performance.",
+                "category": "archi"
+            },
+            {
+                "question": "Un système big-endian stocke l'octet de poids fort (MSB) :",
+                "options": [
+                    "À l'adresse mémoire la plus basse",
+                    "À l'adresse mémoire la plus haute",
+                    "Dans un registre spécial",
+                    "Dans le cache uniquement"
+                ],
+                "correct": 0,
+                "hint": "Big-endian: MSB en premier (comme on écrit). Little-endian: LSB en premier (x86).",
+                "category": "archi"
+            },
+            {
+                "question": "La résolution d'un ADC 12 bits sur une plage 0-3.3V donne une précision d'environ :",
+                "options": [
+                    "0.8 mV",
+                    "3.3 mV",
+                    "13.2 mV",
+                    "33 mV"
+                ],
+                "correct": 0,
+                "hint": "3.3V / 2^12 = 3.3 / 4096 ≈ 0.806 mV. Plus de bits = meilleure résolution.",
+                "category": "archi"
+            },
+            {
+                "question": "Un bus I2C utilise deux lignes. Que signifie 'open-drain' ?",
+                "options": [
+                    "Les dispositifs ne peuvent que tirer la ligne à GND, pas à VCC",
+                    "La ligne est toujours à haute impédance",
+                    "Les données circulent dans un seul sens",
+                    "Il faut un câble blindé"
+                ],
+                "correct": 0,
+                "hint": "Open-drain + pull-up: plusieurs dispositifs partagent la ligne. N'importe qui peut tirer à 0 (wired-AND).",
+                "category": "archi"
+            },
+            {
+                "question": "Dans un protocole SPI, MOSI signifie :",
+                "options": [
+                    "Master Out Slave In",
+                    "Memory Output Serial Interface",
+                    "Multiple Output Single Input",
+                    "Modular Operating System Interface"
+                ],
+                "correct": 0,
+                "hint": "SPI: Master Out Slave In (MOSI), Master In Slave Out (MISO), Serial Clock (SCK), Slave Select (SS).",
+                "category": "archi"
+            },
+            {
+                "question": "Un oscillateur à quartz est préféré aux oscillateurs RC car :",
+                "options": [
+                    "Il offre une fréquence beaucoup plus stable et précise",
+                    "Il est moins cher",
+                    "Il consomme moins d'énergie",
+                    "Il s'initialise plus rapidement"
+                ],
+                "correct": 0,
+                "hint": "Quartz: stabilité ppm. RC: dérive avec température. Critique pour UART, RTC, communications.",
+                "category": "archi"
+            },
+            {
+                "question": "Le terme 'Flash wear leveling' fait référence à :",
+                "options": [
+                    "Une technique pour répartir les écritures et prolonger la vie de la Flash",
+                    "Un type de cryptage des données",
+                    "Une méthode de compression",
+                    "Un protocole de communication"
+                ],
+                "correct": 0,
+                "hint": "Flash: nombre limité de cycles écriture/effacement. Wear leveling distribue pour éviter usure prématurée.",
+                "category": "archi"
+            },
+            {
+                "question": "Sur Arduino, quelle fonction permet de lire une broche configurée en OUTPUT ?",
+                "options": [
+                    "digitalRead() fonctionne même sur OUTPUT",
+                    "outputRead()",
+                    "getOutputState()",
+                    "C'est impossible, il faut la reconfigurer"
+                ],
+                "correct": 0,
+                "hint": "digitalRead() peut lire l'état d'une broche OUTPUT. Utile pour vérifier l'état réel du port.",
+                "category": "arduino"
+            },
+            {
+                "question": "La fonction millis() sur Arduino compte les millisecondes depuis le démarrage. Elle déborde après environ :",
+                "options": [
+                    "50 jours",
+                    "24 heures",
+                    "1 an",
+                    "Elle ne déborde jamais"
+                ],
+                "correct": 0,
+                "hint": "millis() est un unsigned long 32 bits. 2^32 ms ≈ 49.7 jours. Après, retour à 0.",
+                "category": "arduino"
+            },
+            {
+                "question": "Utiliser delay() dans une ISR (Interrupt Service Routine) Arduino est :",
+                "options": [
+                    "Fortement déconseillé, delay() utilise des interruptions et peut bloquer",
+                    "Recommandé pour attendre",
+                    "Obligatoire pour synchroniser",
+                    "Sans effet"
+                ],
+                "correct": 0,
+                "hint": "delay() dépend du timer0 interrupt. Dans une ISR, les interruptions sont désactivées → blocage.",
+                "category": "arduino"
+            },
+            {
+                "question": "Pour lire un capteur DHT11/DHT22 sur Arduino, pourquoi une bibliothèque est-elle nécessaire ?",
+                "options": [
+                    "Le protocole 1-wire du DHT nécessite un timing précis difficile à gérer manuellement",
+                    "Le capteur utilise l'I2C",
+                    "Arduino ne peut pas lire les données analogiques",
+                    "C'est juste pour simplifier, ce n'est pas nécessaire"
+                ],
+                "correct": 0,
+                "hint": "DHT utilise un protocole propriétaire 1-wire avec timing critique (µs). Bibliothèque gère complexité.",
+                "category": "arduino"
+            },
+            {
+                "question": "La différence entre INPUT et INPUT_PULLUP sur Arduino est :",
+                "options": [
+                    "INPUT_PULLUP active la résistance pull-up interne (~20-50kΩ)",
+                    "INPUT_PULLUP inverse le signal",
+                    "INPUT_PULLUP augmente la sensibilité",
+                    "Il n'y a pas de différence"
+                ],
+                "correct": 0,
+                "hint": "INPUT_PULLUP: résistance interne tire la broche à HIGH. Utile pour boutons (évite floating).",
+                "category": "arduino"
+            },
+            {
+                "question": "Pour communiquer entre deux Arduino via UART, il faut connecter :",
+                "options": [
+                    "TX1 à RX2 et RX1 à TX2 (croisé) + GND commun",
+                    "TX1 à TX2 et RX1 à RX2 (droit)",
+                    "Seulement TX1 à RX2",
+                    "Via USB uniquement"
+                ],
+                "correct": 0,
+                "hint": "UART: TX (transmit) → RX (receive) croisé. GND commun pour référence tension.",
+                "category": "arduino"
+            },
+            {
+                "question": "La fréquence PWM par défaut sur Arduino UNO est environ :",
+                "options": [
+                    "~490 Hz (broches 3,9,10,11) et ~980 Hz (5,6)",
+                    "16 MHz",
+                    "50 Hz",
+                    "1 kHz sur toutes"
+                ],
+                "correct": 0,
+                "hint": "Timer0 (5,6): 62.5kHz/64≈980Hz. Timer1,2 (autres): 62.5kHz/128≈490Hz. Modifiable via registres.",
+                "category": "arduino"
+            },
+            {
+                "question": "Pourquoi faut-il une diode de roue libre avec un moteur DC contrôlé par Arduino ?",
+                "options": [
+                    "Pour protéger contre les surtensions induites lors des commutations",
+                    "Pour augmenter la vitesse du moteur",
+                    "Pour économiser l'énergie",
+                    "Pour inverser le sens de rotation"
+                ],
+                "correct": 0,
+                "hint": "Moteur = inductance. Coupure courant → surtension (back-EMF). Diode flyback protège le transistor.",
+                "category": "arduino"
+            },
+            {
+                "question": "Un servomoteur standard est contrôlé par un signal PWM où :",
+                "options": [
+                    "La largeur d'impulsion (1-2ms) détermine l'angle, période ~20ms",
+                    "Le duty cycle 0-255 contrôle l'angle",
+                    "La fréquence variable contrôle l'angle",
+                    "La tension 0-5V contrôle l'angle"
+                ],
+                "correct": 0,
+                "hint": "Servo: impulsion 1ms=0°, 1.5ms=90°, 2ms=180°. Période 20ms (50Hz). Protocole standard hobby.",
+                "category": "arduino"
+            },
+            {
+                "question": "Lors de l'utilisation de plusieurs servos sur Arduino, ils peuvent causer :",
+                "options": [
+                    "Des chutes de tension (brown-out) si alimentés par l'Arduino",
+                    "Des interférences radio",
+                    "Une surchauffe du CPU",
+                    "Aucun problème"
+                ],
+                "correct": 0,
+                "hint": "Servos consomment beaucoup (>100mA chacun). Alimenter séparément avec GND commun.",
+                "category": "arduino"
+            },
+            {
+                "question": "Lors de la quantification d'un modèle neural de float32 à int8, on perd typiquement :",
+                "options": [
+                    "1-3% de précision mais réduit la taille de 75%",
+                    "50% de précision",
+                    "Aucune précision grâce à la calibration",
+                    "10-20% de précision"
+                ],
+                "correct": 0,
+                "hint": "Quantification int8: 4× plus petit, 2-4× plus rapide, perte précision minime avec calibration.",
+                "category": "ai"
+            },
+            {
+                "question": "Un NPU (Neural Processing Unit) dans un SE est optimisé pour :",
+                "options": [
+                    "Les opérations matricielles et convolutions des réseaux de neurones",
+                    "Le traitement audio uniquement",
+                    "La gestion mémoire",
+                    "Les communications réseau"
+                ],
+                "correct": 0,
+                "hint": "NPU: accélérateur matériel pour opérations IA (MAC - Multiply-Accumulate). Ex: Google Edge TPU.",
+                "category": "ai"
+            },
+            {
+                "question": "Dans TensorFlow Lite, un fichier .tflite contient :",
+                "options": [
+                    "Un modèle optimisé avec graphe et poids sérialisés (FlatBuffers)",
+                    "Le code source Python",
+                    "Uniquement les hyperparamètres",
+                    "Les données d'entraînement"
+                ],
+                "correct": 0,
+                "hint": ".tflite: format binaire compact (FlatBuffers) avec topologie réseau et poids quantifiés.",
+                "category": "ai"
+            },
+            {
+                "question": "Le 'pruning' (élagage) structuré diffère du non-structuré car :",
+                "options": [
+                    "Il supprime des neurones/filtres entiers vs connexions individuelles",
+                    "Il est plus lent",
+                    "Il nécessite plus de mémoire",
+                    "Il ne fonctionne qu'avec les CNN"
+                ],
+                "correct": 0,
+                "hint": "Structuré: retire canaux/filtres entiers (accélération réelle). Non-structuré: connexions sparse (gains théoriques).",
+                "category": "ai"
+            },
+            {
+                "question": "Dans un CNN embarqué, les couches convolutionnelles utilisent principalement :",
+                "options": [
+                    "Des opérations MAC (Multiply-Accumulate) intensives",
+                    "Des opérations logiques uniquement",
+                    "Des accès mémoire séquentiels",
+                    "Des calculs en virgule fixe uniquement"
+                ],
+                "correct": 0,
+                "hint": "Convolution = somme de produits (MAC). NPU optimisent MAC avec parallélisme massif.",
+                "category": "ai"
+            },
+            {
+                "question": "L'architecture MobileNet utilise des 'depthwise separable convolutions' pour :",
+                "options": [
+                    "Réduire drastiquement le nombre de paramètres et calculs",
+                    "Améliorer la précision",
+                    "Augmenter la profondeur du réseau",
+                    "Accélérer l'entraînement uniquement"
+                ],
+                "correct": 0,
+                "hint": "Depthwise + Pointwise: 8-9× moins de calculs qu'une conv standard. Conçu pour mobile.",
+                "category": "ai"
+            },
+            {
+                "question": "Dans Edge Impulse, le 'feature extraction' avant le modèle ML sert à :",
+                "options": [
+                    "Transformer les données brutes en caractéristiques discriminantes",
+                    "Compresser les images",
+                    "Entraîner le modèle",
+                    "Tester le matériel"
+                ],
+                "correct": 0,
+                "hint": "Feature extraction: extrait caractéristiques pertinentes (ex: MFCC pour audio, spectrogrammes). Réduit dimensionnalité.",
+                "category": "ai"
+            },
+            {
+                "question": "Pour un modèle de reconnaissance vocale embarqué, quelle technique réduit la latence ?",
+                "options": [
+                    "Streaming inference (traitement par fenêtres glissantes)",
+                    "Augmenter la taille du buffer",
+                    "Utiliser un modèle plus grand",
+                    "Diminuer le taux d'échantillonnage à 1kHz"
+                ],
+                "correct": 0,
+                "hint": "Streaming: traite audio par petits chunks au fur et à mesure. Latence minimale vs batch complet.",
+                "category": "ai"
+            },
+            {
+                "question": "Un modèle LSTM (Long Short-Term Memory) sur SE est utilisé pour :",
+                "options": [
+                    "Traiter des séquences temporelles (audio, gestes, séries temporelles)",
+                    "Classer des images statiques uniquement",
+                    "Gérer la mémoire RAM",
+                    "Compresser les données"
+                ],
+                "correct": 0,
+                "hint": "LSTM: RNN avec mémoire long terme. Idéal pour séquences (speech, écriture, prédiction temporelle).",
+                "category": "ai"
+            },
+            {
+                "question": "Le 'knowledge distillation' consiste à :",
+                "options": [
+                    "Entraîner un petit modèle à imiter un grand modèle (teacher-student)",
+                    "Extraire des règles explicites du réseau",
+                    "Compresser les poids par huffman",
+                    "Réduire le dataset d'entraînement"
+                ],
+                "correct": 0,
+                "hint": "Student apprend des soft labels du teacher (probabilités vs hard labels). Transfert de connaissance.",
+                "category": "ai"
+            },
+            {
+                "question": "Dans un SE avec RTOS, une 'priority inversion' se produit quand :",
+                "options": [
+                    "Une tâche haute priorité est bloquée par une tâche basse priorité tenant un verrou",
+                    "Le scheduler est désactivé",
+                    "Deux tâches ont la même priorité",
+                    "L'horloge système est inversée"
+                ],
+                "correct": 0,
+                "hint": "Priority inversion: high wait for lock held by low, medium preempts low → high bloquée. Solution: priority inheritance.",
+                "category": "intro"
+            },
+            {
+                "question": "Le 'bootloader' d'un SE embarqué est typiquement stocké dans :",
+                "options": [
+                    "Une section protégée de la Flash (boot sector)",
+                    "La RAM",
+                    "L'EEPROM",
+                    "Le cache CPU"
+                ],
+                "correct": 0,
+                "hint": "Bootloader: code d'amorçage en Flash protégée. Initialise matériel, charge application principale.",
+                "category": "archi"
+            },
+            {
+                "question": "Pour mesurer un courant avec Arduino, on utilise généralement :",
+                "options": [
+                    "Une résistance shunt et l'ADC pour mesurer la chute de tension",
+                    "Directement analogRead() sur le fil",
+                    "Un compteur numérique",
+                    "Un condensateur"
+                ],
+                "correct": 0,
+                "hint": "Loi d'Ohm: V=R×I. Shunt = petite résistance série. Mesure tension → calcul courant. Ex: ACS712.",
+                "category": "arduino"
+            },
+            {
+                "question": "Dans un système multi-capteurs, la 'sensor fusion' permet de :",
+                "options": [
+                    "Combiner les données de plusieurs capteurs pour améliorer fiabilité et précision",
+                    "Utiliser un seul capteur pour tout",
+                    "Réduire le nombre de capteurs",
+                    "Économiser l'énergie uniquement"
+                ],
+                "correct": 0,
+                "hint": "Fusion: combine IMU (gyro+accél) pour orientation, ou GPS+IMU pour localisation robuste (filtre Kalman).",
+                "category": "intro"
+            },
+            {
+                "question": "L'overclocking d'un microcontrôleur peut causer :",
+                "options": [
+                    "Instabilité, erreurs de calcul, surchauffe et réduction de durée de vie",
+                    "Une amélioration des performances sans risque",
+                    "Une réduction de la consommation",
+                    "Une meilleure précision ADC"
+                ],
+                "correct": 0,
+                "hint": "Overclock: fréquence > spécifications. Risques: timing violations, heat, shortened lifespan.",
+                "category": "archi"
+            },
+            {
+                "question": "Dans Arduino, la fonction attachInterrupt() permet de :",
+                "options": [
+                    "Associer une ISR à une broche pour réagir aux changements (RISING, FALLING, CHANGE)",
+                    "Créer un timer logiciel",
+                    "Initialiser le port série",
+                    "Activer le mode veille"
+                ],
+                "correct": 0,
+                "hint": "attachInterrupt(pin, ISR, mode): ISR appelée immédiatement sur événement. Critique pour réactivité.",
+                "category": "arduino"
+            },
+            {
+                "question": "Un modèle de détection d'objets (YOLO, SSD) embarqué nécessite généralement :",
+                "options": [
+                    "Plus de puissance de calcul qu'un classifieur simple car il prédit bounding boxes et classes",
+                    "Moins de ressources qu'un classifieur",
+                    "Uniquement un CPU sans accélérateur",
+                    "Aucun prétraitement d'image"
+                ],
+                "correct": 0,
+                "hint": "Object detection: multiple predictions (position + classe). Plus complexe que classification seule.",
+                "category": "ai"
+            },
+            {
+                "question": "Dans un SE critique (avionique, médical), la certification DO-178C ou IEC 62304 exige :",
+                "options": [
+                    "Une traçabilité complète, tests exhaustifs, preuves formelles de sûreté",
+                    "Uniquement un code optimisé",
+                    "Un système d'exploitation spécial",
+                    "Une connexion Internet sécurisée"
+                ],
+                "correct": 0,
+                "hint": "Certifications safety-critical: documentation rigoureuse, validation formelle, tests à 100%. Coûteux.",
+                "category": "intro"
+            },
+            {
+                "question": "Le 'memory mapped I/O' signifie que :",
+                "options": [
+                    "Les registres des périphériques sont accessibles comme des adresses mémoire",
+                    "Les périphériques ont leur propre espace d'adressage séparé",
+                    "La mémoire est virtuelle",
+                    "Les données sont compressées"
+                ],
+                "correct": 0,
+                "hint": "MMIO: périphériques mappés dans l'espace mémoire. Accès via pointeurs comme RAM (simplifie code).",
+                "category": "archi"
+            },
+            {
+                "question": "Pour déboguer un Arduino sans Serial Monitor, on peut utiliser :",
+                "options": [
+                    "Des LEDs pour afficher l'état, un oscilloscope/analyseur logique, ou JTAG/SWD",
+                    "Uniquement la méthode 'print debugging' est possible",
+                    "Il est impossible de déboguer sans Serial",
+                    "Le WiFi obligatoirement"
+                ],
+                "correct": 0,
+                "hint": "Debug alternatifs: LED morse, logic analyzer (Saleae), JTAG debugger (Atmel-ICE), oscilloscope.",
+                "category": "arduino"
+            },
+            {
+                "question": "Un modèle AutoEncoder sur SE peut être utilisé pour :",
+                "options": [
+                    "La détection d'anomalies en comparant reconstruction vs entrée",
+                    "Augmenter la résolution uniquement",
+                    "Accélérer les communications",
+                    "Générer de l'énergie"
+                ],
+                "correct": 0,
+                "hint": "AutoEncoder: compresse puis reconstruit. Erreur élevée = anomalie. Utile pour maintenance prédictive.",
+                "category": "ai"
+            },
+            {
+                "question": "Le protocole CAN (Controller Area Network) est privilégié dans l'automobile car :",
+                "options": [
+                    "Il est robuste aux perturbations, sans maître, et supporte des longueurs de câble importantes",
+                    "Il est le plus rapide de tous les protocoles",
+                    "Il ne nécessite aucun câblage",
+                    "Il crypte automatiquement les données"
+                ],
+                "correct": 0,
+                "hint": "CAN: différentiel (immunité bruit), multi-maître, arbitrage par priorité, fiable. Standard ISO 11898.",
+                "category": "archi"
+            },
+            {
+                "question": "Pour implémenter un filtre passe-bas logiciel sur Arduino, on peut utiliser :",
+                "options": [
+                    "Une moyenne mobile ou un filtre IIR simple (y = α×x + (1-α)×y_prev)",
+                    "Un simple digitalRead()",
+                    "La fonction random()",
+                    "Un delay() variable"
+                ],
+                "correct": 0,
+                "hint": "Filtre numérique: moyenne mobile (FIR) ou exponential smoothing (IIR). Réduit bruit capteurs.",
+                "category": "arduino"
+            },
+            {
+                "question": "Dans un réseau de neurones, l'activation ReLU (Rectified Linear Unit) est préférée car :",
+                "options": [
+                    "Elle est simple, rapide à calculer et évite le vanishing gradient",
+                    "Elle donne toujours de meilleurs résultats",
+                    "Elle ne nécessite aucun calcul",
+                    "Elle compresse automatiquement le modèle"
+                ],
+                "correct": 0,
+                "hint": "ReLU(x)=max(0,x): simple, dérivée facile, évite saturation gradient (vs sigmoid/tanh). Problème: dying ReLU.",
+                "category": "ai"
+            },
+            {
+                "question": "Un 'soft real-time system' diffère d'un 'hard real-time' car :",
+                "options": [
+                    "Dépasser une deadline dégrade la QoS mais n'est pas catastrophique",
+                    "Il n'y a aucune deadline",
+                    "Il est plus rapide",
+                    "Il consomme moins d'énergie"
+                ],
+                "correct": 0,
+                "hint": "Soft RT: deadline miss = dégradation acceptable (vidéo streaming). Hard RT: miss = échec critique (airbag).",
+                "category": "intro"
+            },
+            {
+                "question": "Dans l'architecture ARM Cortex-M, le 'NVIC' est :",
+                "options": [
+                    "Le Nested Vectored Interrupt Controller qui gère les interruptions avec priorités",
+                    "Un type de mémoire non-volatile",
+                    "Un protocole de communication",
+                    "Un mode d'économie d'énergie"
+                ],
+                "correct": 0,
+                "hint": "NVIC: contrôleur d'interruptions ARM. Gère priorités, nesting, masquage. Déterministe pour temps réel.",
+                "category": "archi"
+            },
+            {
+                "question": "Pour communiquer des données de capteur par Bluetooth avec Arduino, on utilise souvent :",
+                "options": [
+                    "Un module HC-05/HC-06 (SPP) ou BLE comme HM-10 via UART",
+                    "Directement l'USB",
+                    "Un câble Ethernet",
+                    "Le WiFi uniquement"
+                ],
+                "correct": 0,
+                "hint": "HC-05/06: Bluetooth Classic SPP (Serial Port Profile) via UART. HM-10: Bluetooth Low Energy (BLE).",
+                "category": "arduino"
+            },
+            {
+                "question": "Dans le contexte IA embarquée, 'TinyML' fait référence à :",
+                "options": [
+                    "Le machine learning sur microcontrôleurs avec <1MB RAM/Flash",
+                    "Les très grands modèles compressés",
+                    "Une bibliothèque Python",
+                    "Un framework cloud"
+                ],
+                "correct": 0,
+                "hint": "TinyML: ML ultra-light pour MCU (<100mW, <1MB). TensorFlow Lite Micro, uTensor. Ex: Cortex-M0+.",
+                "category": "ai"
+            },
+            {
+                "question": "La technique de 'double buffering' en programmation embarquée permet de :",
+                "options": [
+                    "Lire depuis un buffer pendant qu'on écrit dans l'autre, évitant les conflits",
+                    "Doubler la vitesse du CPU",
+                    "Réduire la consommation de moitié",
+                    "Crypter les données deux fois"
+                ],
+                "correct": 0,
+                "hint": "Double buffer: un buffer en lecture, un en écriture. Swap quand complet. Évite déchirure (tearing) affichage.",
+                "category": "archi"
+            },
+            {
+                "question": "Sur Arduino, pourquoi faut-il éviter String (classe) dans du code critique et préférer char[] ?",
+                "options": [
+                    "String utilise allocation dynamique causant fragmentation heap et imprévisibilité",
+                    "String est plus lent de 1000×",
+                    "char[] ne fonctionne pas",
+                    "String consomme toujours 1KB"
+                ],
+                "correct": 0,
+                "hint": "String: malloc/free dynamiques → fragmentation, mémoire imprévisible. char[]: statique, déterministe.",
+                "category": "arduino"
+            },
+            {
+                "question": "Un modèle de classification binaire avec seuil de décision ajustable permet :",
+                "options": [
+                    "D'équilibrer precision/recall selon les besoins (ROC curve, trade-off FP/FN)",
+                    "D'améliorer automatiquement la précision à 100%",
+                    "De doubler la vitesse d'inférence",
+                    "De réduire la taille du modèle"
+                ],
+                "correct": 0,
+                "hint": "Seuil: ajuste trade-off sensibilité/spécificité. Bas seuil → + sensible (+ FP). Haut seuil → + spécifique (+ FN).",
+                "category": "ai"
+            }
+        ]
+}

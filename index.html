@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Systèmes Embarqués & IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">Quiz Systèmes Embarqués & IA</h1>
+                    <p class="text-blue-100">Master IA - Amine Bouramtane</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 inline-block">
+                        <p class="text-sm">Questions : <span id="total-questions">200</span></p>
+                        <p class="text-sm">Score : <span id="current-score">0</span>/<span id="max-score">200</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Summary -->
+            <div class="lg:col-span-2">
+                <!-- Quiz Section -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Question <span id="question-number">1</span>/<span id="total-questions-display">200</span></h2>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-600">Progression</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2.5">
+                                <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <p id="question-text" class="text-lg text-gray-700 leading-relaxed">
+                            Chargement de la question...
+                        </p>
+                    </div>
+
+                    <div id="options-container" class="space-y-4 mb-8">
+                        <!-- Options will be inserted here -->
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <button id="prev-btn" class="px-5 py-2.5 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-arrow-left mr-2"></i>Précédent
+                        </button>
+                        
+                        <div class="flex space-x-3">
+                            <button id="hint-btn" class="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-lg font-medium hover:bg-yellow-200 transition">
+                                <i class="fas fa-lightbulb mr-2"></i>Indice
+                            </button>
+                            <button id="skip-btn" class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium hover:bg-purple-200 transition">
+                                <i class="fas fa-forward mr-2"></i>Passer
+                            </button>
+                        </div>
+                        
+                        <button id="next-btn" class="px-5 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition">
+                            Suivant<i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+
+                    <!-- Main Quiz Hint Section -->
+                    <div id="hint-section" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mt-6 hidden">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-lightbulb text-yellow-400 text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-yellow-800">Indice</h3>
+                                <div id="hint-text" class="mt-1 text-sm text-yellow-700">
+                                    <p>L'indice apparaîtra ici.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Random 20 Questions Quiz Section -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Quiz aléatoire 20 Q • Question <span id="random-question-number">1</span>/<span id="random-total-questions-display">20</span></h2>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-600">Progression</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2.5">
+                                <div id="random-progress-bar" class="bg-indigo-600 h-2.5 rounded-full progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <p id="random-question-text" class="text-lg text-gray-700 leading-relaxed">
+                            Chargement de la question...
+                        </p>
+                    </div>
+
+                    <div id="random-options-container" class="space-y-4 mb-8">
+                        <!-- Random options here -->
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <button id="random-prev-btn" class="px-5 py-2.5 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-arrow-left mr-2"></i>Précédent
+                        </button>
+                        
+                        <div class="flex space-x-3">
+                            <button id="random-hint-btn" class="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-lg font-medium hover:bg-yellow-200 transition">
+                                <i class="fas fa-lightbulb mr-2"></i>Indice
+                            </button>
+                            <button id="random-skip-btn" class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium hover:bg-purple-200 transition">
+                                <i class="fas fa-forward mr-2"></i>Passer
+                            </button>
+                        </div>
+                        
+                        <button id="random-next-btn" class="px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition">
+                            Suivant<i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+
+                    <!-- Random Quiz Hint Section -->
+                    <div id="random-hint-section" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg mt-6 hidden">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-lightbulb text-yellow-400 text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-yellow-800">Indice</h3>
+                                <p id="random-hint-text" class="mt-2 text-sm text-yellow-700"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="results-section" class="bg-white rounded-xl shadow-lg p-6 hidden">
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-trophy text-green-500 text-4xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Quiz Terminé!</h2>
+                        <p class="text-xl text-gray-600 mb-6">Votre score final: <span id="final-score" class="font-bold text-blue-600">0</span>/<span id="final-total">200</span></p>
+                        <div class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-3 rounded-lg font-bold text-lg mb-6">
+                            <span id="percentage">0%</span>
+                        </div>
+                        <div class="mb-8">
+                            <p class="text-gray-600 mb-2">Statistiques de votre performance:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-blue-600" id="correct-count">0</p>
+                                    <p class="text-sm text-gray-600">Réponses correctes</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-yellow-600" id="incorrect-count">0</p>
+                                    <p class="text-sm text-gray-600">Réponses incorrectes</p>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-purple-600" id="skipped-count">0</p>
+                                    <p class="text-sm text-gray-600">Questions passées</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="restart-btn" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition mr-4">
+                            <i class="fas fa-redo mr-2"></i>Recommencer
+                        </button>
+                        <button id="review-btn" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 transition">
+                            <i class="fas fa-list mr-2"></i>Voir les réponses
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Course Summary -->
+            <div class="lg:col-span-1">
+                <!-- Course Summary -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Résumé du Cours</h2>
+                    <div class="space-y-4">
+                        <a href="#chapter-intro" class="block border-l-4 border-blue-500 pl-4 py-1 hover:bg-blue-50 transition cursor-pointer">
+                            <h3 class="font-medium text-gray-800">Chapitre 1: Introduction</h3>
+                            <p class="text-sm text-gray-600">Systèmes autonomes, composants, types, historique</p>
+                        </a>
+                        <a href="#chapter-archi" class="block border-l-4 border-green-500 pl-4 py-1 hover:bg-green-50 transition cursor-pointer">
+                            <h3 class="font-medium text-gray-800">Chapitre 2: Architecture</h3>
+                            <p class="text-sm text-gray-600">Matériel/logiciel, microcontrôleurs vs microprocesseurs, mémoire</p>
+                        </a>
+                        <a href="#chapter-arduino" class="block border-l-4 border-purple-500 pl-4 py-1 hover:bg-purple-50 transition cursor-pointer">
+                            <h3 class="font-medium text-gray-800">Ateliers Arduino</h3>
+                            <p class="text-sm text-gray-600">Programmation, E/S, PWM, capteurs, actionneurs</p>
+                        </a>
+                        <a href="#chapter-ai" class="block border-l-4 border-yellow-500 pl-4 py-1 hover:bg-yellow-50 transition cursor-pointer">
+                            <h3 class="font-medium text-gray-800">SE & IA</h3>
+                            <p class="text-sm text-gray-600">Inférence, latence, applications intelligentes</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl shadow-lg p-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Vos Statistiques</h2>
+                        <button id="stats-source-toggle" class="text-xs font-semibold bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-full transition">
+                            Source: <span id="stats-source-label">Principal</span>
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Progression</span>
+                                <span id="progress-percent" class="font-bold">0%</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2.5">
+                                <div id="stats-progress" class="bg-white h-2.5 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white/20 p-3 rounded-lg">
+                                <p class="text-2xl font-bold" id="answered-count">0</p>
+                                <p class="text-sm opacity-90">Répondu</p>
+                            </div>
+                            <div class="bg-white/20 p-3 rounded-lg">
+                                <p class="text-2xl font-bold" id="remaining-count">200</p>
+                                <p class="text-sm opacity-90">Restantes</p>
+                            </div>
+                        </div>
+                        <div id="stats-detailed" class="grid grid-cols-3 gap-3 hidden">
+                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                <p class="text-xl font-bold" id="stats-correct">0</p>
+                                <p class="text-xs opacity-90">Correctes</p>
+                            </div>
+                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                <p class="text-xl font-bold" id="stats-incorrect">0</p>
+                                <p class="text-xs opacity-90">Incorrectes</p>
+                            </div>
+                            <div class="bg-white/20 p-3 rounded-lg text-center">
+                                <p class="text-xl font-bold" id="stats-skipped">0</p>
+                                <p class="text-xs opacity-90">Passées</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Catégories du Quiz</h2>
+                    <div class="space-y-3">
+                        <button class="w-full text-left p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition category-btn" data-category="all">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-blue-700">Toutes les questions</span>
+                                <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-full" id="count-all">200</span>
+                            </div>
+                        </button>
+                        <button class="w-full text-left p-3 bg-green-50 rounded-lg hover:bg-green-100 transition category-btn" data-category="intro">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-green-700">Introduction SE</span>
+                                <span class="bg-green-600 text-white text-xs px-2 py-1 rounded-full" id="count-intro">25</span>
+                            </div>
+                        </button>
+                        <button class="w-full text-left p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition category-btn" data-category="archi">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-purple-700">Architecture</span>
+                                <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full" id="count-archi">40</span>
+                            </div>
+                        </button>
+                        <button class="w-full text-left p-3 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition category-btn" data-category="arduino">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium text-yellow-700">Arduino & Pratique</span>
+                                <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded-full" id="count-arduino">35</span>
+                            </div>
+                        </button>
+                        <button class="w-full text-left p-3 bg-red-50 rounded-lg hover:bg-red-100 transition category-btn" data-category="ai">
+                            <div class="flex justify-between items-center">
+                                <span class="flex-medium text-red-700">SE & IA</span>
+                                <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-full" id="count-ai">20</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Course Summaries Section -->
+    <section class="container mx-auto px-4 py-12 bg-gradient-to-b from-gray-50 to-white">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">
+            <i class="fas fa-book-open mr-3 text-blue-600"></i>
+            Résumés Détaillés du Cours
+        </h2>
+        
+        <!-- Chapter 1: Introduction -->
+        <div id="chapter-intro" class="bg-white rounded-xl shadow-xl p-8 mb-8 scroll-mt-20 border-t-4 border-blue-500">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">1</div>
+                <h3 class="text-3xl font-bold text-blue-600">Introduction aux Systèmes Embarqués</h3>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="mb-6 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=400&fit=crop" alt="Embedded Systems" class="w-full h-64 object-cover">
+            </div>
+            
+            <div class="space-y-6 text-gray-700">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        Définition et Caractéristiques
+                    </h4>
+                    <p class="leading-relaxed mb-3">
+                        Un <strong>système embarqué</strong> est un système informatique autonome conçu pour accomplir une fonction spécifique au sein d'un dispositif plus large. Il combine matériel et logiciel pour réaliser des tâches dédiées avec des contraintes strictes de ressources, temps réel, fiabilité et coût.
+                    </p>
+                    
+                    <!-- Architecture Diagram -->
+                    <div class="bg-white p-4 rounded-lg mb-4 border-2 border-blue-200">
+                        <h5 class="font-semibold text-center mb-3 text-blue-700">Architecture d'un Système Embarqué</h5>
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <div class="bg-blue-100 p-3 rounded">
+                                <div class="font-bold mb-1">Capteurs</div>
+                                <div class="text-gray-600">Température, Lumière, Pression, Mouvement</div>
+                            </div>
+                            <div class="bg-blue-500 text-white p-3 rounded">
+                                <div class="font-bold mb-1">🧠 MCU/MPU</div>
+                                <div>Traitement + Mémoire</div>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded">
+                                <div class="font-bold mb-1">Actionneurs</div>
+                                <div class="text-gray-600">Moteurs, LEDs, Écrans, Haut-parleurs</div>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-center">
+                            <div class="inline-block bg-yellow-100 px-4 py-2 rounded">
+                                <strong>↕ Communication:</strong> I2C, SPI, UART, WiFi, Bluetooth
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-white p-4 rounded shadow-sm">
+                            <h5 class="font-semibold text-blue-700 mb-2">✓ Caractéristiques Clés</h5>
+                            <ul class="text-sm space-y-1">
+                                <li>• <strong>Autonomie:</strong> Fonctionne sans intervention humaine constante</li>
+                                <li>• <strong>Temps réel:</strong> Répond dans des délais précis et prévisibles</li>
+                                <li>• <strong>Ressources limitées:</strong> CPU, RAM, énergie contraints</li>
+                                <li>• <strong>Haute fiabilité:</strong> Doit fonctionner 24/7 sans erreur</li>
+                                <li>• <strong>Coût optimisé:</strong> Conception économique pour masse</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm">
+                            <h5 class="font-semibold text-blue-700 mb-2">⚙ Composants Principaux</h5>
+                            <ul class="text-sm space-y-1">
+                                <li>• <strong>Processeur:</strong> MCU/MPU - cerveau du système</li>
+                                <li>• <strong>Mémoires:</strong> RAM (volatile), ROM/Flash (non-volatile)</li>
+                                <li>• <strong>Capteurs:</strong> Mesure grandeurs physiques</li>
+                                <li>• <strong>Actionneurs:</strong> Actions physiques (moteurs, LEDs)</li>
+                                <li>• <strong>Interfaces:</strong> Communication (UART, I2C, SPI, CAN)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3">Types de Systèmes Embarqués</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="border-l-4 border-blue-400 pl-4 py-3 bg-gray-50 hover:bg-blue-50 transition">
+                            <div class="text-2xl mb-2">🔹</div>
+                            <h5 class="font-semibold mb-2">SE Simples</h5>
+                            <p class="text-sm mb-2">Fonction unique, ressources minimales</p>
+                            <p class="text-xs text-gray-600"><strong>Exemples:</strong> Thermostat, calculatrice, télécommande</p>
+                        </div>
+                        <div class="border-l-4 border-blue-400 pl-4 py-3 bg-gray-50 hover:bg-blue-50 transition">
+                            <div class="text-2xl mb-2">🔸</div>
+                            <h5 class="font-semibold mb-2">SE Moyens</h5>
+                            <p class="text-sm mb-2">Plusieurs fonctionnalités, ressources modérées</p>
+                            <p class="text-xs text-gray-600"><strong>Exemples:</strong> Audio auto, téléphone basique, GPS</p>
+                        </div>
+                        <div class="border-l-4 border-blue-400 pl-4 py-3 bg-gray-50 hover:bg-blue-50 transition">
+                            <div class="text-2xl mb-2">🔶</div>
+                            <h5 class="font-semibold mb-2">SE Complexes</h5>
+                            <p class="text-sm mb-2">Multitâches, OS temps réel, interfaces riches</p>
+                            <p class="text-xs text-gray-600"><strong>Exemples:</strong> Smartphone, drone, voiture autonome</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-clock-rotate-left text-green-500 mr-2"></i>
+                        Historique et Évolution
+                    </h4>
+                    <p class="leading-relaxed">
+                        De l'ordinateur de guidage Apollo (années 1960) aux systèmes IoT et IA d'aujourd'hui, les SE ont révolutionné notre quotidien. L'évolution des microprocesseurs (Intel 4004, 1971) a démocratisé ces systèmes, les rendant omniprésents dans l'automobile, l'industrie, la santé, et la domotique.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 2: Architecture -->
+        <div id="chapter-archi" class="bg-white rounded-xl shadow-xl p-8 mb-8 scroll-mt-20 border-t-4 border-green-500">
+            <div class="flex items-center mb-6">
+                <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">2</div>
+                <h3 class="text-3xl font-bold text-green-600">Architecture des Systèmes Embarqués</h3>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="mb-6 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=1200&h=400&fit=crop" alt="Circuit Architecture" class="w-full h-64 object-cover">
+            </div>
+            
+            <div class="space-y-6 text-gray-700">
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-microchip text-green-600 mr-2"></i>
+                        Microcontrôleur vs Microprocesseur
+                    </h4>
+                    
+                    <!-- Visual Comparison -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-100 p-4 rounded-lg border-2 border-green-400">
+                            <h5 class="font-bold text-green-700 mb-2 text-center">🔧 Microcontrôleur (MCU)</h5>
+                            <div class="text-center mb-2">
+                                <div class="inline-block bg-white px-4 py-2 rounded shadow text-sm">
+                                    <div class="font-bold">Tout-en-un</div>
+                                    <div class="text-xs">CPU + RAM + ROM + I/O</div>
+                                </div>
+                            </div>
+                            <p class="text-sm">Système complet sur une puce. Idéal pour applications dédiées avec ressources limitées.</p>
+                        </div>
+                        <div class="bg-blue-100 p-4 rounded-lg border-2 border-blue-400">
+                            <h5 class="font-bold text-blue-700 mb-2 text-center">⚡ Microprocesseur (MPU)</h5>
+                            <div class="text-center mb-2">
+                                <div class="inline-block bg-white px-4 py-2 rounded shadow text-sm">
+                                    <div class="font-bold">CPU Puissant</div>
+                                    <div class="text-xs">+ Composants externes</div>
+                                </div>
+                            </div>
+                            <p class="text-sm">Processeur haute performance. Nécessite mémoire et périphériques externes.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-300 text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-left font-semibold">Critère</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-green-700">Microcontrôleur (MCU)</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-blue-700">Microprocesseur (MPU)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t">
+                                    <td class="px-4 py-3 font-medium">Intégration</td>
+                                    <td class="px-4 py-3">CPU + RAM + ROM + Périphériques intégrés</td>
+                                    <td class="px-4 py-3">CPU seul, périphériques externes</td>
+                                </tr>
+                                <tr class="border-t bg-gray-50">
+                                    <td class="px-4 py-3 font-medium">Puissance</td>
+                                    <td class="px-4 py-3">8-200 MHz</td>
+                                    <td class="px-4 py-3">1-5 GHz</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="px-4 py-3 font-medium">Consommation</td>
+                                    <td class="px-4 py-3">μA - mA (ultra-basse)</td>
+                                    <td class="px-4 py-3">Watts (élevée)</td>
+                                </tr>
+                                <tr class="border-t bg-gray-50">
+                                    <td class="px-4 py-3 font-medium">Coût</td>
+                                    <td class="px-4 py-3">$1 - $20</td>
+                                    <td class="px-4 py-3">$50 - $1000+</td>
+                                </tr>
+                                <tr class="border-t">
+                                    <td class="px-4 py-3 font-medium">Applications</td>
+                                    <td class="px-4 py-3">IoT, capteurs, contrôle industriel</td>
+                                    <td class="px-4 py-3">PC, serveurs, smartphones haut de gamme</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Hiérarchie Mémoire</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-3 bg-gray-50 p-3 rounded">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded font-semibold text-sm">ROM/Flash</span>
+                                <p class="text-sm">Non volatile, stocke le programme</p>
+                            </div>
+                            <div class="flex items-center space-x-3 bg-gray-50 p-3 rounded">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded font-semibold text-sm">RAM</span>
+                                <p class="text-sm">Volatile, variables temporaires</p>
+                            </div>
+                            <div class="flex items-center space-x-3 bg-gray-50 p-3 rounded">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded font-semibold text-sm">EEPROM</span>
+                                <p class="text-sm">Non volatile, configuration</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Interfaces Communication</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="bg-gray-50 p-3 rounded">
+                                <strong>UART:</strong> Série asynchrone, 2 fils (TX/RX), debug/GPS
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded">
+                                <strong>I2C:</strong> Bus synchrone, 2 fils (SDA/SCL), capteurs/EEPROM
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded">
+                                <strong>SPI:</strong> Haute vitesse, 4 fils, SD cards/afficheurs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 p-5 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">Convertisseurs ADC et DAC</h4>
+                    <p class="mb-3"><strong>ADC (Analog-to-Digital):</strong> Convertit signaux analogiques continus (capteurs) en valeurs numériques. Résolution 8/10/12 bits détermine la précision.</p>
+                    <p><strong>DAC (Digital-to-Analog):</strong> Inverse, transforme valeurs numériques en signaux analogiques (audio, contrôle moteur). PWM peut simuler un DAC.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 3: Arduino -->
+        <div id="chapter-arduino" class="bg-white rounded-xl shadow-xl p-8 mb-8 scroll-mt-20 border-t-4 border-purple-500">
+            <div class="flex items-center mb-6">
+                <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">3</div>
+                <h3 class="text-3xl font-bold text-purple-600">Ateliers Pratiques Arduino</h3>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="mb-6 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?w=1200&h=400&fit=crop" alt="Arduino Projects" class="w-full h-64 object-cover">
+            </div>
+            
+            <div class="space-y-6 text-gray-700">
+                <div class="bg-purple-50 p-6 rounded-lg">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-microchip text-purple-600 mr-2"></i>
+                        Arduino UNO - Spécifications
+                    </h4>
+                    
+                    <!-- Arduino Board Visual -->
+                    <div class="bg-white p-4 rounded-lg mb-4 border-2 border-purple-200">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                            <div class="bg-purple-100 p-3 rounded">
+                                <div class="text-2xl mb-1">🧠</div>
+                                <div class="font-semibold text-sm">ATmega328P</div>
+                                <div class="text-xs text-gray-600">16 MHz</div>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded">
+                                <div class="text-2xl mb-1">💾</div>
+                                <div class="font-semibold text-sm">32KB Flash</div>
+                                <div class="text-xs text-gray-600">2KB SRAM</div>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded">
+                                <div class="text-2xl mb-1">📍</div>
+                                <div class="font-semibold text-sm">14 Digital I/O</div>
+                                <div class="text-xs text-gray-600">6 PWM ~</div>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded">
+                                <div class="text-2xl mb-1">📊</div>
+                                <div class="font-semibold text-sm">6 Analog In</div>
+                                <div class="text-xs text-gray-600">10-bit ADC</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <div class="text-purple-600 font-bold mb-2">Processeur</div>
+                            <p class="text-sm">ATmega328P @ 16MHz<br/>32KB Flash, 2KB SRAM</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <div class="text-purple-600 font-bold mb-2">E/S Numériques</div>
+                            <p class="text-sm">14 broches (6 PWM ~)<br/>HIGH=5V, LOW=0V</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <div class="text-purple-600 font-bold mb-2">Entrées Analogiques</div>
+                            <p class="text-sm">6 broches (A0-A5)<br/>Résolution 10 bits (0-1023)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3">Structure Programme Arduino</h4>
+                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+                        <div class="text-gray-500">// Structure de base</div>
+                        <div>void setup() {</div>
+                        <div class="ml-4 text-gray-400">// Initialisation (une fois)</div>
+                        <div class="ml-4">pinMode(13, OUTPUT);</div>
+                        <div class="ml-4">Serial.begin(9600);</div>
+                        <div>}</div>
+                        <div class="mt-2">void loop() {</div>
+                        <div class="ml-4 text-gray-400">// Boucle infinie</div>
+                        <div class="ml-4">digitalWrite(13, HIGH);</div>
+                        <div class="ml-4">delay(1000);</div>
+                        <div>}</div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border border-purple-300 p-5 rounded-lg">
+                        <h5 class="font-semibold text-purple-700 mb-3">PWM (Modulation Largeur d'Impulsion)</h5>
+                        <div class="bg-gray-100 p-3 rounded mb-2 font-mono text-sm">
+                            analogWrite(pin, 0-255);
+                        </div>
+                        <p class="text-sm">Broches ~3,5,6,9,10,11. Simule tension variable: 0=0V, 127=2.5V, 255=5V. Applications: LED RGB, vitesse moteur, audio.</p>
+                    </div>
+                    <div class="border border-purple-300 p-5 rounded-lg">
+                        <h5 class="font-semibold text-purple-700 mb-3">Lecture Analogique</h5>
+                        <div class="bg-gray-100 p-3 rounded mb-2 font-mono text-sm">
+                            val = analogRead(A0); // 0-1023
+                        </div>
+                        <p class="text-sm">ADC 10 bits convertit 0-5V en 0-1023. Capteurs: potentiomètre, LDR, LM35 température, capteurs d'humidité.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">Capteurs et Actionneurs Populaires</h4>
+                    <div class="grid md:grid-cols-4 gap-3 text-sm">
+                        <div class="bg-purple-50 p-3 rounded">
+                            <div class="font-semibold mb-1">DHT11/22</div>
+                            <div class="text-xs">Temp. & humidité</div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded">
+                            <div class="font-semibold mb-1">HC-SR04</div>
+                            <div class="text-xs">Ultrasons distance</div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded">
+                            <div class="font-semibold mb-1">MPU6050</div>
+                            <div class="text-xs">Gyro + Accéléro I2C</div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded">
+                            <div class="font-semibold mb-1">Servomoteur</div>
+                            <div class="text-xs">Rotation 0-180° PWM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter 4: AI -->
+        <div id="chapter-ai" class="bg-white rounded-xl shadow-xl p-8 mb-8 scroll-mt-20 border-t-4 border-yellow-500">
+            <div class="flex items-center mb-6">
+                <div class="bg-yellow-500 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mr-4">4</div>
+                <h3 class="text-3xl font-bold text-yellow-600">Systèmes Embarqués et Intelligence Artificielle</h3>
+            </div>
+            
+            <!-- Hero Image -->
+            <div class="mb-6 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=400&fit=crop" alt="AI and Embedded Systems" class="w-full h-64 object-cover">
+            </div>
+            
+            <div class="space-y-6 text-gray-700">
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-brain text-yellow-600 mr-2"></i>
+                        Convergence SE et IA: Edge Computing
+                    </h4>
+                    
+                    <!-- Edge Computing Visual -->
+                    <div class="bg-white p-4 rounded-lg mb-4 border-2 border-yellow-200">
+                        <h5 class="font-semibold text-center mb-3">Cloud vs Edge Computing</h5>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="text-center p-3 bg-gray-100 rounded">
+                                <div class="text-3xl mb-2">☁️</div>
+                                <div class="font-semibold mb-2">Cloud Computing</div>
+                                <div class="text-xs space-y-1 text-left">
+                                    <div>• Puissance illimitée</div>
+                                    <div>• Latence élevée (100-500ms)</div>
+                                    <div>• Nécessite connexion</div>
+                                    <div>• Données transmises</div>
+                                </div>
+                            </div>
+                            <div class="text-center p-3 bg-yellow-100 rounded border-2 border-yellow-400">
+                                <div class="text-3xl mb-2">📱</div>
+                                <div class="font-semibold mb-2">Edge Computing ⭐</div>
+                                <div class="text-xs space-y-1 text-left">
+                                    <div>• Ressources limitées</div>
+                                    <div>• Latence ultra-faible (<10ms)</div>
+                                    <div>• Autonome (offline)</div>
+                                    <div>• Données locales</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-4">L'intégration de l'IA dans les SE crée des dispositifs autonomes capables de décisions intelligentes en temps réel, sans cloud.</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded shadow-sm">
+                            <div class="text-yellow-600 font-bold mb-2">✓ Avantages</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• Latence ultra-faible</li>
+                                <li>• Confidentialité données</li>
+                                <li>• Autonomie sans réseau</li>
+                                <li>• Économie bande passante</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm">
+                            <div class="text-red-600 font-bold mb-2">✗ Défis</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• Ressources limitées</li>
+                                <li>• Optimisation modèles</li>
+                                <li>• Consommation énergie</li>
+                                <li>• Mise à jour modèles</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm">
+                            <div class="text-blue-600 font-bold mb-2">⚙ Solutions</div>
+                            <ul class="text-sm space-y-1">
+                                <li>• TensorFlow Lite</li>
+                                <li>• Quantification int8</li>
+                                <li>• Pruning & distillation</li>
+                                <li>• NPU/TPU hardware</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border-2 border-yellow-300 p-5 rounded-lg">
+                        <h5 class="font-semibold text-gray-800 mb-3">Entraînement (Training)</h5>
+                        <ul class="text-sm space-y-2">
+                            <li>• Intensif en calcul (GPU/TPU)</li>
+                            <li>• Grande quantité de données</li>
+                            <li>• Plusieurs heures/jours</li>
+                            <li>• Sur serveurs/cloud</li>
+                        </ul>
+                    </div>
+                    <div class="border-2 border-yellow-300 p-5 rounded-lg bg-yellow-50">
+                        <h5 class="font-semibold text-gray-800 mb-3">Inférence ⭐ (Deployment SE)</h5>
+                        <ul class="text-sm space-y-2">
+                            <li>• Exécution modèle pré-entraîné</li>
+                            <li>• Besoins calcul réduits</li>
+                            <li>• Temps réel (ms)</li>
+                            <li><strong>• Faisable sur SE!</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4">Techniques d'Optimisation</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-yellow-50 p-4 rounded">
+                            <h5 class="font-semibold mb-2">Quantification</h5>
+                            <p class="text-sm">Float32 → Int8: Réduit taille de 75%, accélère calculs, perte précision minime</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded">
+                            <h5 class="font-semibold mb-2">Pruning (Élagage)</h5>
+                            <p class="text-sm">Supprime connexions/neurones inutiles, réduit paramètres de 90%</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded">
+                            <h5 class="font-semibold mb-2">Knowledge Distillation</h5>
+                            <p class="text-sm">Petit modèle (student) imite grand modèle (teacher) pour SE</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded">
+                            <h5 class="font-semibold mb-2">Architectures Légères</h5>
+                            <p class="text-sm">MobileNet, EfficientNet, SqueezeNet conçus pour appareils mobiles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4">Applications Intelligentes</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="border border-yellow-400 p-4 rounded hover:shadow-lg transition">
+                            <div class="text-3xl mb-2">👁️</div>
+                            <h5 class="font-semibold mb-2">Vision</h5>
+                            <p class="text-sm">Classification images, détection objets, reconnaissance faciale</p>
+                        </div>
+                        <div class="border border-yellow-400 p-4 rounded hover:shadow-lg transition">
+                            <div class="text-3xl mb-2">🎤</div>
+                            <h5 class="font-semibold mb-2">Audio/Voix</h5>
+                            <p class="text-sm">Reconnaissance vocale, commande vocale, assistants</p>
+                        </div>
+                        <div class="border border-yellow-400 p-4 rounded hover:shadow-lg transition">
+                            <div class="text-3xl mb-2">🚗</div>
+                            <h5 class="font-semibold mb-2">Véhicules Autonomes</h5>
+                            <p class="text-sm">Détection piétons, panneaux, planification trajectoire</p>
+                        </div>
+                        <div class="border border-yellow-400 p-4 rounded hover:shadow-lg transition">
+                            <div class="text-3xl mb-2">🏥</div>
+                            <h5 class="font-semibold mb-2">Santé</h5>
+                            <p class="text-sm">Analyse ECG, détection chutes, monitoring wearables</p>
+                        </div>
+                        <div class="border border-yellow-400 p-4 rounded hover:shadow-lg transition">
+                            <div class="text-3xl mb-2">🏭</div>
+                            <h5 class="font-semibold mb-2">Industrie 4.0</h5>
+                            <p class="text-sm">Maintenance prédictive, QC vision, robots autonomes</p>
+                        </div>
+                        <div class="border border-yellow-400 p-4 rounded hover:shadow-lg transition">
+                            <div class="text-3xl mb-2">🏠</div>
+                            <h5 class="font-semibold mb-2">Domotique</h5>
+                            <p class="text-sm">Apprentissage habitudes, optimisation énergie, sécurité</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-yellow-100 to-yellow-50 p-6 rounded-lg">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3">🚀 Futur des SE et IA</h4>
+                    <ul class="space-y-2">
+                        <li>• <strong>NPU/TPU intégrés:</strong> Accélérateurs IA dédiés dans SoC pour inférence ultra-rapide</li>
+                        <li>• <strong>5G + Edge Computing:</strong> Latence <1ms pour applications critiques distribuées</li>
+                        <li>• <strong>Apprentissage fédéré:</strong> Entraînement collaboratif décentralisé sans partage données</li>
+                        <li>• <strong>Neuromorphic Computing:</strong> Processeurs inspirés du cerveau, ultra-efficaces</li>
+                        <li>• <strong>AutoML embarqué:</strong> Optimisation automatique modèles pour cibles matérielles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Systèmes Embarqués & IA</h3>
+                    <p class="text-gray-400">Master Intelligence Artificielle - FSSM</p>
+                    <p class="text-gray-400">Amine Bouramtane</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 mb-2">© 2025 - Tous droits réservés</p>
+                    <div class="flex justify-center md:justify-end space-x-4">
+                        <a href="https://github.com/Aminebouramtane" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/amine-bouramtane-72975a259/" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="bouramtaneamine1@gmail.com" class="text-gray-400 hover:text-white transition">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="index.js"></script>
+</body>
+</html>
