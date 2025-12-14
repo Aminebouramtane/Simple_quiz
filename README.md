@@ -1,8 +1,28 @@
-# Quiz Application - Systèmes Embarqués
+# Quiz Application - Systèmes Embarqués ⚡
 
-A modern, interactive quiz application for embedded systems learning, featuring 200 questions across multiple categories with real-time progress tracking and dual quiz modes.
+A **professional-grade** interactive quiz application for embedded systems learning, featuring 200 questions across multiple categories with advanced features including dark mode, keyboard shortcuts, performance analytics, and much more!
 
-![Quiz Application](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Features](https://img.shields.io/badge/features-12+-orange.svg)
+![Status](https://img.shields.io/badge/status-production-success.svg)
+
+## ⚡ Quick Feature Overview
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| 🌓 Dark Mode | ✅ | Toggle-able theme with smooth transitions |
+| ⌨️ Keyboard Shortcuts | ✅ | 10 shortcuts for lightning-fast navigation |
+| 💾 Auto-Save | ✅ | Never lose progress (saves every 30s) |
+| 🔊 Sound Effects | ✅ | Audio feedback for engagement |
+| 📈 Analytics | ✅ | Performance tracking & insights |
+| 🔖 Bookmarks | ✅ | Mark difficult questions |
+| 🎉 Confetti | ✅ | Celebration animations |
+| 📥 Export | ✅ | Download results as text |
+| 🔔 Notifications | ✅ | Elegant toast messages |
+| ⏱️ Timer | ✅ | Track study time |
+| 🎨 Animations | ✅ | Professional transitions |
+| 📱 Mobile | ✅ | Fully responsive design |
 
 ## 🌟 Features
 
@@ -16,12 +36,26 @@ A modern, interactive quiz application for embedded systems learning, featuring 
 - 📊 **Real-time Statistics**: Track your progress, correct answers, and completion rate
 - ⏭️ **Skip Option**: Move to next question when needed
 - 🔄 **Review Mode**: Review all questions and answers after completion
+- 🔖 **Bookmarks**: Mark important questions for later review
+- 📈 **Performance Analytics**: Detailed time tracking and performance metrics
+
+### Advanced Features ⚡
+- 🌓 **Dark Mode**: Toggle between light and dark themes
+- ⏱️ **Timer Mode**: Track time spent with built-in stopwatch
+- ⌨️ **Keyboard Shortcuts**: Navigate using keyboard (Arrow keys, 1-4, H, S, B, D)
+- 🔊 **Sound Effects**: Audio feedback for interactions (toggleable)
+- 🎉 **Confetti Animations**: Celebration effects on quiz completion
+- 💾 **Auto-Save Progress**: Automatically saves your progress every 30 seconds
+- 📥 **Export Results**: Download your quiz results as a text file
+- 🔔 **Toast Notifications**: Non-intrusive notifications for actions
 
 ### User Experience
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Progress Tracking**: Visual progress bars and detailed statistics
-- **Instant Feedback**: Immediate visual indication of correct/incorrect answers
+- **Instant Feedback**: Immediate visual and audio indication of correct/incorrect answers
 - **Clean Interface**: Modern UI built with Tailwind CSS
+- **Smooth Animations**: Professional transitions and effects
+- **Accessibility**: Keyboard navigation and clear visual feedback
 
 ## 📋 Table of Contents
 
@@ -45,13 +79,6 @@ A modern, interactive quiz application for embedded systems learning, featuring 
 
 1. **Clone or download the project**
    ```bash
-   http://localhost/index.html
-   ```
-
-### Alternative Server Options
-
-1. **Clone or download the project**
-   ```bash
    cd /path/to/project
    ```
 
@@ -64,6 +91,18 @@ A modern, interactive quiz application for embedded systems learning, featuring 
    ```
    http://localhost:8080/se.html
    ```
+
+### Alternative Server Options
+
+Using Node.js:
+```bash
+npx http-server -p 8080
+```
+
+Using PHP:
+```bash
+php -S localhost:8080
+```
 
 ## 📖 Usage
 
@@ -89,13 +128,31 @@ A modern, interactive quiz application for embedded systems learning, featuring 
 - Complete the quiz to see detailed results with:
   - Final score and percentage
   - Number of correct, incorrect, and skipped questions
-  - Option to restart or review answers
+  - Performance analytics (average time, fastest/slowest questions)
+  - Option to restart, review answers, or export results
+
+### Keyboard Shortcuts ⌨️
+
+The quiz supports the following keyboard shortcuts for faster navigation:
+
+| Key | Action |
+|-----|--------|
+| `→` or `N` | Next question |
+| `←` or `P` | Previous question |
+| `H` | Show hint |
+| `S` | Skip question |
+| `1-4` | Select answer option (A-D) |
+| `B` | Toggle bookmark |
+| `D` | Toggle dark mode |
+| `?` | Show keyboard shortcuts modal |
+
+**Tip**: Click the keyboard icon (bottom right) or press `?` to view shortcuts anytime!
 
 ## 📁 Project Structure
 
 ```
 SE/
-├── index.html        # Main HTML file with quiz interface
+├── se.html           # Main HTML file with quiz interface
 ├── index.css         # Custom styles for quiz interactions
 ├── index.js          # Core application logic and quiz functionality
 ├── data.json         # Question database (76 base questions, padded to 200)
@@ -104,14 +161,31 @@ SE/
 
 ### File Descriptions
 
-- **se.html**: Contains the complete HTML structure including both quiz sections, statistics card, and results display
-- **index.css**: Custom CSS for hover effects, progress bars, and answer states (correct/incorrect/selected)
-- **index.js**: JavaScript logic for:
+- **se.html**: Contains the complete HTML structure including both quiz sections, statistics card, and results display with enhanced header controls
+- **index.css**: Comprehensive CSS including:
+  - Custom hover effects and transitions
+  - Dark mode theme variables
+  - Progress bar animations
+  - Answer state styling (correct/incorrect/selected)
+  - Confetti particles
+  - Responsive design rules
+- **index.js**: Core JavaScript logic for:
   - Data fetching and initialization
   - Question rendering and navigation
-  - Answer validation
-  - Progress tracking
+  - Answer validation with sound feedback
+  - Progress tracking and bookmarking
   - Statistics calculation
+- **enhancements.js**: Advanced features module:
+  - Dark mode implementation
+  - Timer functionality
+  - Sound effects system
+  - Keyboard shortcuts handler
+  - Local storage management
+  - Bookmark system
+  - Performance analytics
+  - Confetti animations
+  - Export functionality
+- **toast.js**: Toast notification system for user feedback
 - **data.json**: JSON database with question objects containing:
   - Question text
   - Multiple choice options
@@ -198,6 +272,33 @@ Contributions are welcome! To contribute:
 - Add dark mode theme
 - Implement user authentication
 
+## 📝 License
+
+This project is licensed under the MIT License - see below for details:
+
+```
+MIT License
+
+Copyright (c) 2024
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## 📞 Support
 
@@ -206,16 +307,30 @@ For questions or issues:
 - Check existing documentation
 - Review the code comments in `index.js`
 
-## 🎯 Future Enhancements
+## 🎯 Implemented Features
 
-- [ ] Timer mode for timed quizzes
+- [x] Timer mode with stopwatch
+- [x] Dark mode toggle with smooth transitions
+- [x] Question bookmarking system
+- [x] Performance analytics dashboard
+- [x] Export results functionality
+- [x] Keyboard shortcuts
+- [x] Sound effects
+- [x] Progress auto-save
+- [x] Toast notifications
+- [x] Confetti animations
+
+## 💡 Future Enhancement Ideas
+
+- [ ] Countdown timer mode (X minutes per quiz)
 - [ ] Difficulty levels (Easy, Medium, Hard)
-- [ ] User profiles and saved progress
-- [ ] Export results to PDF
-- [ ] Multi-language support
-- [ ] Dark mode toggle
-- [ ] Question bookmarking
-- [ ] Performance analytics dashboard
+- [ ] User profiles with authentication
+- [ ] Full PDF export with charts (using jsPDF)
+- [ ] Multi-language support (EN, FR, AR)
+- [ ] Leaderboard system
+- [ ] Question explanation mode
+- [ ] Study streak tracking
+- [ ] Spaced repetition algorithm
 
 ---
 

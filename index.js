@@ -161,6 +161,8 @@ function initializeApp() {
     document.getElementById('count-ai').textContent = aiCount;
   }
 
+  let questionStartTime = Date.now();
+
   function loadQuestion(index) {
     const filteredQuestions = getFilteredQuestions();
     if (index < 0 || index >= filteredQuestions.length) return;
@@ -169,10 +171,33 @@ function initializeApp() {
     const filteredIndex = getCurrentFilteredIndex();
     questionNumber.textContent = filteredIndex + 1;
     questionText.textContent = question.question;
+    
+    // Track question time
+    if (window.quizEnhancements && questionStartTime) {
+      window.quizEnhancements.trackQuestionTime(currentQuestion, questionStartTime);
+    }
+    questionStartTime = Date.now();
+    
+    // Update bookmark button
+    if (window.quizEnhancements) {
+      window.quizEnhancements.updateBookmarkButton(currentQuestion);
+    }
+    
+    // Switch dashboard to main quiz mode
+    if (window.advancedDashboard) {
+      window.advancedDashboard.setQuizType('main');
+    }
+    
+    // Save global reference for enhancements
+    window.currentQuestionIndex = currentQuestion;
+    window.currentScore = score;
+    window.userAnswersArray = userAnswers;
+    window.questionStatusArray = questionStatus;
+    
     optionsContainer.innerHTML = '';
     question.options.forEach((option, idx) => {
       const optionDiv = document.createElement('div');
-      optionDiv.className = 'p-4 border-2 border-gray-200 rounded-lg cursor-pointer transition option-btn card-hover hover:border-blue-300 hover:bg-blue-50';
+      optionDiv.className = 'p-4 border-2 border-gray-200 rounded-lg cursor-pointer transition option-btn card-hover hover:border-blue-300 hover:bg-blue-50 fade-in';
       optionDiv.textContent = `${String.fromCharCode(65 + idx)}) ${option}`;
       optionDiv.dataset.index = idx;
       if (selectedOptions[currentQuestion] && selectedOptions[currentQuestion].includes(idx)) {
@@ -222,7 +247,28 @@ function initializeApp() {
       const isCorrect = optionIndex === question.correct;
       userAnswers[currentQuestion] = isCorrect;
       questionStatus[currentQuestion] = isCorrect ? 'correct' : 'incorrect';
-      if (isCorrect) { score++; currentScore.textContent = score; }
+      
+      // Update global references for dashboard
+      window.userAnswersArray = userAnswers;
+      window.questionStatusArray = questionStatus;
+      
+      if (isCorrect) { 
+        score++; 
+        currentScore.textContent = score;
+        if (window.quizEnhancements) window.quizEnhancements.playSound('success');
+        if (window.toast) window.toast.success('Bonne réponse! ✓', 1500);
+      } else {
+        if (window.quizEnhancements) window.quizEnhancements.playSound('error');
+        if (window.toast) window.toast.error('Incorrect ✗', 1500);
+      }
+      
+      // Update dashboard
+      if (window.advancedDashboard) {
+        window.advancedDashboard.calculateStreak(isCorrect);
+        window.advancedDashboard.updateCategoryStats(question.category, isCorrect);
+        window.advancedDashboard.update();
+      }
+      
       optionDivs.forEach((div, idx) => {
         if (idx === question.correct) div.classList.add('option-correct');
         else if (idx === optionIndex && idx !== question.correct) div.classList.add('option-incorrect');
@@ -288,6 +334,14 @@ function initializeApp() {
     correctCount.textContent = correct;
     incorrectCount.textContent = incorrect;
     skippedCount.textContent = skipped;
+    
+    // Enhanced features
+    if (window.quizEnhancements) {
+      window.quizEnhancements.launchConfetti();
+      window.quizEnhancements.displayPerformanceReport();
+      window.quizEnhancements.clearProgress();
+      window.quizEnhancements.stopTimer();
+    }
   }
 
   function restartQuiz() {
@@ -300,8 +354,22 @@ function initializeApp() {
     resultsSection.classList.add('hidden');
     document.querySelector('.lg\\:col-span-2 > div:first-child').classList.remove('hidden');
     if (statsDetailed) statsDetailed.classList.add('hidden');
+    
+    // Reset dashboard
+    if (window.advancedDashboard) {
+      window.advancedDashboard.reset();
+    }
+    
+    // Update global references
+    window.userAnswersArray = userAnswers;
+    window.questionStatusArray = questionStatus;
+    
     loadQuestion(0);
     updateCategoryCounts();
+    
+    if (window.toast) {
+      window.toast.info('Quiz redémarré! Bonne chance! 🎯', 2000);
+    }
   }
 
   function reviewAnswers() {
@@ -317,6 +385,29 @@ function initializeApp() {
   skipBtn.addEventListener('click', skipQuestion);
   restartBtn.addEventListener('click', restartQuiz);
   reviewBtn.addEventListener('click', reviewAnswers);
+  
+  // Bookmark button
+  const bookmarkBtn = document.getElementById('bookmark-btn');
+  if (bookmarkBtn && window.quizEnhancements) {
+    bookmarkBtn.addEventListener('click', () => {
+      window.quizEnhancements.toggleBookmark(currentQuestion);
+    });
+  }
+  
+  // Export button
+  const exportBtn = document.getElementById('export-btn');
+  if (exportBtn && window.quizEnhancements) {
+    exportBtn.addEventListener('click', () => {
+      const results = {
+        correct: questionStatus.filter(s => s === 'correct').length,
+        incorrect: questionStatus.filter(s => s === 'incorrect').length,
+        skipped: questionStatus.filter(s => s === 'skipped').length,
+        total: activeQuizData.length,
+        percentage: Math.round((questionStatus.filter(s => s === 'correct').length / activeQuizData.length) * 100)
+      };
+      window.quizEnhancements.exportToPDF(results);
+    });
+  }
 
   // Random quiz rendering and logic
   if (rPrevBtn) rPrevBtn.addEventListener('click', prevRandomQuestion);
@@ -328,6 +419,14 @@ function initializeApp() {
     rQuestionNumber.textContent = rCurrent + 1;
     rTotalQuestionsDisplay.textContent = randomQuizData.length;
     rQuestionText.textContent = q.question;
+    
+    // Switch dashboard to random mode
+    if (window.advancedDashboard) {
+      window.advancedDashboard.setQuizType('random');
+      window.userAnswersArray = rUserAnswers;
+      window.questionStatusArray = rQuestionStatus;
+    }
+    
     rOptionsContainer.innerHTML = '';
     const selected = rSelectedOptions[rCurrent] || [];
     q.options.forEach((opt, idx) => {
@@ -363,16 +462,67 @@ function initializeApp() {
     const isCorrect = sel.length === correct.length && correct.every(c => sel.includes(c));
     rUserAnswers[rCurrent] = isCorrect;
     rQuestionStatus[rCurrent] = sel.length === 0 ? 'skipped' : (isCorrect ? 'correct' : 'incorrect');
+    
+    // Update dashboard for random quiz
+    if (window.advancedDashboard && sel.length > 0) {
+      window.advancedDashboard.setQuizType('random');
+      window.advancedDashboard.calculateStreak(isCorrect);
+      window.advancedDashboard.updateCategoryStats(q.category, isCorrect);
+      
+      // Update global references
+      window.userAnswersArray = rUserAnswers;
+      window.questionStatusArray = rQuestionStatus;
+      
+      if (isCorrect && window.quizEnhancements) {
+        window.quizEnhancements.playSound('success');
+        if (window.toast) window.toast.success('Bonne réponse! ✓', 1500);
+      } else if (!isCorrect && sel.length > 0 && window.quizEnhancements) {
+        window.quizEnhancements.playSound('error');
+        if (window.toast) window.toast.error('Incorrect ✗', 1500);
+      }
+    }
   }
   function nextRandomQuestion() {
     checkRandomCurrent();
     if (rCurrent === randomQuizData.length - 1) {
+      // Quiz completed - show results
       const correct = rQuestionStatus.filter(status => status === 'correct').length;
       const incorrect = rQuestionStatus.filter(status => status === 'incorrect').length;
       const skipped = rQuestionStatus.filter(status => status === 'skipped' || status === 'unanswered').length;
-      // No alert; reveal detailed stats grid
+      const percentage = Math.round((correct / randomQuizData.length) * 100);
+      
+      // Show completion notification
+      if (window.toast) {
+        window.toast.success(`Quiz aléatoire terminé! Score: ${correct}/${randomQuizData.length} (${percentage}%)`, 3000);
+      }
+      
+      // Play completion sound
+      if (window.quizEnhancements) {
+        window.quizEnhancements.playSound('complete');
+      }
+      
+      // Reveal detailed stats
       if (statsDetailed) statsDetailed.classList.remove('hidden');
       updateStats();
+      
+      // Prompt to restart after a short delay
+      setTimeout(() => {
+        if (confirm(`Quiz aléatoire terminé!\n\n✓ Correctes: ${correct}\n✗ Incorrectes: ${incorrect}\n⊘ Passées: ${skipped}\n\nScore: ${percentage}%\n\nVoulez-vous recommencer le quiz aléatoire?`)) {
+          // Reset random quiz
+          rCurrent = 0;
+          rSelectedOptions = {};
+          rUserAnswers = new Array(randomQuizData.length).fill(null);
+          rQuestionStatus = new Array(randomQuizData.length).fill('unanswered');
+          
+          // Reset dashboard random stats
+          if (window.advancedDashboard) {
+            window.advancedDashboard.reset('random');
+          }
+          
+          renderRandomQuestion();
+          if (statsDetailed) statsDetailed.classList.add('hidden');
+        }
+      }, 500);
     } else {
       rCurrent += 1;
       renderRandomQuestion();
@@ -457,6 +607,12 @@ function initializeApp() {
       console.error('No quiz data loaded');
       return;
     }
+    
+    // Initialize dashboard with main quiz
+    if (window.advancedDashboard) {
+      window.advancedDashboard.setQuizType('main');
+    }
+    
     updateCategoryCounts();
     loadQuestion(0);
     changeCategory('all');
