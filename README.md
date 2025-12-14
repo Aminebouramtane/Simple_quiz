@@ -9,20 +9,20 @@ A **professional-grade** interactive quiz application for embedded systems learn
 
 ## ⚡ Quick Feature Overview
 
-| Feature | Status | Description |
-|---------|--------|-------------|
-| 🌓 Dark Mode | ✅ | Toggle-able theme with smooth transitions |
-| ⌨️ Keyboard Shortcuts | ✅ | 10 shortcuts for lightning-fast navigation |
-| 💾 Auto-Save | ✅ | Never lose progress (saves every 30s) |
-| 🔊 Sound Effects | ✅ | Audio feedback for engagement |
-| 📈 Analytics | ✅ | Performance tracking & insights |
-| 🔖 Bookmarks | ✅ | Mark difficult questions |
-| 🎉 Confetti | ✅ | Celebration animations |
-| 📥 Export | ✅ | Download results as text |
-| 🔔 Notifications | ✅ | Elegant toast messages |
-| ⏱️ Timer | ✅ | Track study time |
-| 🎨 Animations | ✅ | Professional transitions |
-| 📱 Mobile | ✅ | Fully responsive design |
+| Feature | Description |
+|---------|-------------|
+|  Dark Mode | Toggle-able theme with smooth transitions |
+|  Keyboard Shortcuts | 10 shortcuts for lightning-fast navigation |
+|  Auto-Save | Never lose progress (saves every 30s) |
+|  Sound Effects | Audio feedback for engagement |
+|  Analytics | Performance tracking & insights |
+|  Bookmarks | Mark difficult questions |
+|  Confetti | Celebration animations |
+|  Export | Download results as text |
+|  Notifications | Elegant toast messages |
+|  Timer | Track study time |
+|  Animations | Professional transitions |
+|  Mobile | Fully responsive design |
 
 ## 🌟 Features
 
