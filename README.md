@@ -1,4 +1,4 @@
-# Quiz Application - Systèmes Embarqués ⚡
+# Quiz Application - Systèmes Embarqués 
 
 A **professional-grade** interactive quiz application for embedded systems learning, featuring 200 questions across multiple categories with advanced features including dark mode, keyboard shortcuts, performance analytics, and much more!
 
@@ -6,7 +6,7 @@ A **professional-grade** interactive quiz application for embedded systems learn
 ![Features](https://img.shields.io/badge/features-12+-orange.svg)
 ![Status](https://img.shields.io/badge/status-production-success.svg)
 
-## ⚡ Quick Feature Overview
+## Quick Feature Overview
 
 | Feature | Description |
 |---------|-------------|
