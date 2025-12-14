@@ -45,7 +45,7 @@ A modern, interactive quiz application for embedded systems learning, featuring 
 
 1. **Clone or download the project**
    ```bash
-   [cd /path/to/project](http://localhost:8080/index.html)
+   http://localhost/index.html
    ```
 
 ### Alternative Server Options
