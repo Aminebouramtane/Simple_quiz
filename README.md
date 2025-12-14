@@ -3,7 +3,6 @@
 A modern, interactive quiz application for embedded systems learning, featuring 200 questions across multiple categories with real-time progress tracking and dual quiz modes.
 
 ![Quiz Application](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 ## 🌟 Features
 
@@ -46,6 +45,13 @@ A modern, interactive quiz application for embedded systems learning, featuring 
 
 1. **Clone or download the project**
    ```bash
+   [cd /path/to/project](http://localhost:8080/index.html)
+   ```
+
+### Alternative Server Options
+
+1. **Clone or download the project**
+   ```bash
    cd /path/to/project
    ```
 
@@ -58,18 +64,6 @@ A modern, interactive quiz application for embedded systems learning, featuring 
    ```
    http://localhost:8080/se.html
    ```
-
-### Alternative Server Options
-
-Using Node.js:
-```bash
-npx http-server -p 8080
-```
-
-Using PHP:
-```bash
-php -S localhost:8080
-```
 
 ## 📖 Usage
 
@@ -101,7 +95,7 @@ php -S localhost:8080
 
 ```
 SE/
-├── se.html           # Main HTML file with quiz interface
+├── index.html        # Main HTML file with quiz interface
 ├── index.css         # Custom styles for quiz interactions
 ├── index.js          # Core application logic and quiz functionality
 ├── data.json         # Question database (76 base questions, padded to 200)
@@ -204,33 +198,6 @@ Contributions are welcome! To contribute:
 - Add dark mode theme
 - Implement user authentication
 
-## 📝 License
-
-This project is licensed under the MIT License - see below for details:
-
-```
-MIT License
-
-Copyright (c) 2024
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 
 ## 📞 Support
 
