@@ -94,7 +94,7 @@ A **professional-grade** interactive quiz application for embedded systems learn
    http://localhost:8080/se.html
    ```
 
-## 📖 Usage
+##  Usage
 
 ### Starting a Quiz
 
@@ -121,7 +121,7 @@ A **professional-grade** interactive quiz application for embedded systems learn
   - Performance analytics (average time, fastest/slowest questions)
   - Option to restart, review answers, or export results
 
-### Keyboard Shortcuts ⌨️
+### Keyboard Shortcuts 
 
 The quiz supports the following keyboard shortcuts for faster navigation:
 
@@ -183,7 +183,7 @@ SE/
   - Hint text
   - Category classification
 
-## 🛠️ Technologies
+##  Technologies
 
 ### Frontend
 - **HTML5**: Semantic markup
@@ -213,7 +213,7 @@ The quiz covers four main categories:
 
 **Note**: The application pads the base 76 questions to 200 by creating revision copies prefixed with "[Révision]".
 
-## 💻 Development
+##  Development
 
 ### Adding New Questions
 
@@ -262,7 +262,7 @@ Contributions are welcome! To contribute:
 - Add dark mode theme
 - Implement user authentication
 
-## 📞 Support
+##  Support
 
 For questions or issues:
 - Open an issue in the project repository
