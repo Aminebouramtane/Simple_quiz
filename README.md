@@ -38,7 +38,7 @@ A **professional-grade** interactive quiz application for embedded systems learn
 -  **Bookmarks**: Mark important questions for later review
 -  **Performance Analytics**: Detailed time tracking and performance metrics
 
-### Advanced Features ⚡
+### Advanced Features 
 -  **Dark Mode**: Toggle between light and dark themes
 -  **Timer Mode**: Track time spent with built-in stopwatch
 -  **Keyboard Shortcuts**: Navigate using keyboard (Arrow keys, 1-4, H, S, B, D)
