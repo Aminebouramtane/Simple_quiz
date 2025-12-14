@@ -200,7 +200,7 @@ SE/
 - **Event-Driven**: DOM event listeners for user interactions
 - **Modular Functions**: Reusable functions for quiz operations
 
-## 📚 Question Categories
+##  Question Categories
 
 The quiz covers four main categories:
 
@@ -244,7 +244,7 @@ const randomQuizCount = 20;        // Questions in random quiz
 - **Custom styles**: Modify `index.css` for hover effects and transitions
 - **Layout**: Adjust grid classes in `se.html`
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! To contribute:
 
@@ -269,7 +269,7 @@ For questions or issues:
 - Check existing documentation
 - Review the code comments in `index.js`
 
-## 🎯 Implemented Features
+##  Implemented Features
 
 - [x] Timer mode with stopwatch
 - [x] Dark mode toggle with smooth transitions
@@ -282,7 +282,7 @@ For questions or issues:
 - [x] Toast notifications
 - [x] Confetti animations
 
-## 💡 Future Enhancement Ideas
+##  Future Enhancement Ideas
 
 - [ ] Countdown timer mode (X minutes per quiz)
 - [ ] Difficulty levels (Easy, Medium, Hard)
