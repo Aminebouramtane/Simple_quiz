@@ -24,30 +24,30 @@ A **professional-grade** interactive quiz application for embedded systems learn
 |  Animations | Professional transitions |
 |  Mobile | Fully responsive design |
 
-## 🌟 Features
+##  Features
 
 ### Dual Quiz Modes
 - **Main Quiz (200 Questions)**: Complete quiz with 200 questions covering all topics
 - **Random Quiz (20 Questions)**: Quick practice mode with 20 randomly selected questions
 
 ### Smart Learning Tools
-- ✅ **Category Filtering**: Filter questions by topic (Introduction, Architecture, Arduino, AI)
-- 💡 **Hint System**: Get contextual hints for challenging questions
-- 📊 **Real-time Statistics**: Track your progress, correct answers, and completion rate
-- ⏭️ **Skip Option**: Move to next question when needed
-- 🔄 **Review Mode**: Review all questions and answers after completion
-- 🔖 **Bookmarks**: Mark important questions for later review
-- 📈 **Performance Analytics**: Detailed time tracking and performance metrics
+-  **Category Filtering**: Filter questions by topic (Introduction, Architecture, Arduino, AI)
+-  **Hint System**: Get contextual hints for challenging questions
+-  **Real-time Statistics**: Track your progress, correct answers, and completion rate
+-  **Skip Option**: Move to next question when needed
+-  **Review Mode**: Review all questions and answers after completion
+-  **Bookmarks**: Mark important questions for later review
+-  **Performance Analytics**: Detailed time tracking and performance metrics
 
 ### Advanced Features ⚡
-- 🌓 **Dark Mode**: Toggle between light and dark themes
-- ⏱️ **Timer Mode**: Track time spent with built-in stopwatch
-- ⌨️ **Keyboard Shortcuts**: Navigate using keyboard (Arrow keys, 1-4, H, S, B, D)
-- 🔊 **Sound Effects**: Audio feedback for interactions (toggleable)
-- 🎉 **Confetti Animations**: Celebration effects on quiz completion
-- 💾 **Auto-Save Progress**: Automatically saves your progress every 30 seconds
-- 📥 **Export Results**: Download your quiz results as a text file
-- 🔔 **Toast Notifications**: Non-intrusive notifications for actions
+-  **Dark Mode**: Toggle between light and dark themes
+-  **Timer Mode**: Track time spent with built-in stopwatch
+-  **Keyboard Shortcuts**: Navigate using keyboard (Arrow keys, 1-4, H, S, B, D)
+-  **Sound Effects**: Audio feedback for interactions (toggleable)
+-  **Confetti Animations**: Celebration effects on quiz completion
+-  **Auto-Save Progress**: Automatically saves your progress every 30 seconds
+-  **Export Results**: Download your quiz results as a text file
+-  **Toast Notifications**: Non-intrusive notifications for actions
 
 ### User Experience
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
@@ -57,7 +57,7 @@ A **professional-grade** interactive quiz application for embedded systems learn
 - **Smooth Animations**: Professional transitions and effects
 - **Accessibility**: Keyboard navigation and clear visual feedback
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#-features)
 - [Installation](#-installation)
@@ -69,13 +69,16 @@ A **professional-grade** interactive quiz application for embedded systems learn
 - [Contributing](#-contributing)
 - [License](#-license)
 
-## 🚀 Installation
-
-### Prerequisites
-- Python 3.x (for local server)
-- Modern web browser (Chrome, Firefox, Safari, Edge)
+##  Installation
 
 ### Quick Start
+
+3. **Open in browser**
+   ```
+   http://localhost/index.html
+   ```
+
+### Alternative Server Options
 
 1. **Clone or download the project**
    ```bash
@@ -91,18 +94,6 @@ A **professional-grade** interactive quiz application for embedded systems learn
    ```
    http://localhost:8080/se.html
    ```
-
-### Alternative Server Options
-
-Using Node.js:
-```bash
-npx http-server -p 8080
-```
-
-Using PHP:
-```bash
-php -S localhost:8080
-```
 
 ## 📖 Usage
 
@@ -148,11 +139,11 @@ The quiz supports the following keyboard shortcuts for faster navigation:
 
 **Tip**: Click the keyboard icon (bottom right) or press `?` to view shortcuts anytime!
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 SE/
-├── se.html           # Main HTML file with quiz interface
+├── index.html           # Main HTML file with quiz interface
 ├── index.css         # Custom styles for quiz interactions
 ├── index.js          # Core application logic and quiz functionality
 ├── data.json         # Question database (76 base questions, padded to 200)
@@ -161,7 +152,7 @@ SE/
 
 ### File Descriptions
 
-- **se.html**: Contains the complete HTML structure including both quiz sections, statistics card, and results display with enhanced header controls
+- **index.html**: Contains the complete HTML structure including both quiz sections, statistics card, and results display with enhanced header controls
 - **index.css**: Comprehensive CSS including:
   - Custom hover effects and transitions
   - Dark mode theme variables
@@ -271,34 +262,6 @@ Contributions are welcome! To contribute:
 - Create export functionality for results
 - Add dark mode theme
 - Implement user authentication
-
-## 📝 License
-
-This project is licensed under the MIT License - see below for details:
-
-```
-MIT License
-
-Copyright (c) 2024
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 
 ## 📞 Support
 
